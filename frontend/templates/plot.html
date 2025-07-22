@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block styles %}
+{{ super() }}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/plot.css') }}">
+{% endblock %}
+
+{% block content %}
+<h2>Plotter CSVibe</h2>
+<p>CSVibe is your go-to platform for all things CSV. Whether you need to create, edit, or analyze CSV files, we've got
+    you covered.</p>
+
+<div id="tester" style="width:600px;height:250px;"></div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    function loadLocalPlotly() {
+        console.log("Loading local Plotly.js due to CDN failure.");
+    }
+</script>
+<script src="https://cdn.plot.ly/plotly-3.0.1.min.js" charset="utf-8" onerror="loadLocalPlotly()"></script>
+{{ super() }}
+{% endblock %}
