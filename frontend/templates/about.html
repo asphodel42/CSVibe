@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block styles %}
+{{ super() }}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/about.css') }}">
+{% endblock %}
+
+{% block content %}
+<h2>About CSVibe</h2>
+<p>CSVibe is your go-to platform for all things CSV. Whether you need to create, edit, or analyze CSV files, we've got
+    you covered.</p>
+{% endblock %}
+
+{% block scripts %}
+{{ super() }}
+{% endblock %}

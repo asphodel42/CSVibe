@@ -1,0 +1,9 @@
+venv/
+__pycache__/
+*.pyc
+
+backend/charts/
+backend/tmp/
+backend/test_data/
+
+.vscode/

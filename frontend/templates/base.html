@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSVibe - {% block title %}{% endblock %}</title>
+    {% block styles %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    {% endblock %}
+</head>
+
+<body>
+    <header>
+        <div class="header-cont">
+            <div class="header-title">
+                <h1>CSVibe</h1>
+            </div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="{{ url_for('index') }}">Home</a></li>
+                    <li><a href="{{ url_for('about') }}">About</a></li>
+                    <li><a href="">Github</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <section class="page">
+            {% block content %}
+            {% endblock %}
+        </section>
+    </main>
+
+    {% block scripts %}
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+    {% endblock %}
+</body>
+
+</html>
