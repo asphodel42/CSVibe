@@ -1,3 +1,7 @@
-const Heading = document.querySelector(".page h2");
+const BurgerBtn = document.querySelector(".burger-btn");
+const Nav = document.querySelector("nav");
 
-console.log(`Title: ${Heading.innerText}`);
+BurgerBtn.addEventListener("click", () => {
+  BurgerBtn.classList.toggle("active");
+  Nav.classList.toggle("active");
+});

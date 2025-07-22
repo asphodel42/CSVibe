@@ -12,15 +12,23 @@
 
 <body>
     <header>
+        <div class="header-line"></div>
         <div class="header-cont">
             <div class="header-title">
-                <h1>CSVibe</h1>
+                <a href="{{ url_for('index') }}">
+                    <h1>CSVibe</h1>
+                </a>
+            </div>
+            <div class="burger-btn">
+                <span class="burger-line"></span>
+                <span class="burger-line"></span>
+                <span class="burger-line"></span>
             </div>
             <nav>
                 <ul class="nav-links">
                     <li><a href="{{ url_for('index') }}">Home</a></li>
                     <li><a href="{{ url_for('about') }}">About</a></li>
-                    <li><a href="">Github</a></li>
+                    <li><a href="https://github.com/asphodel42/CSVibe" target="_blank">GitHub</a></li>
                 </ul>
             </nav>
         </div>

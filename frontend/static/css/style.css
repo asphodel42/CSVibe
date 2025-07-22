@@ -42,3 +42,122 @@ section.page {
   min-height: 100vh;
   padding-top: 60px;
 }
+/* --- Header --- */
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #f9f9f9;
+}
+.header-line {
+  height: 10px;
+  background-color: #7e9fbe;
+}
+.header-cont {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 90px;
+  height: 50px;
+  box-shadow: 0 2px 10px #00000040;
+}
+.header-title h1 {
+  font-size: 32px;
+  font-family: "Montserrat-Medium";
+}
+.nav-links {
+  display: flex;
+  gap: 25px;
+  list-style: none;
+}
+.nav-links li a {
+  font-size: 20px;
+  font-family: "Montserrat-Medium";
+  transition: var(--transition-page);
+}
+.nav-links li a:hover {
+  color: #293d50;
+}
+.burger-btn {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  flex-direction: column;
+  cursor: pointer;
+}
+.burger-line {
+  background-color: #5d86ad;
+  height: 4px;
+  width: 40px;
+  border-radius: 5px;
+  transition: var(--transition-page);
+}
+.burger-btn.active .burger-line:nth-child(1) {
+  transform: rotate(-45deg) translateY(11px);
+}
+.burger-btn.active .burger-line:nth-child(2) {
+  opacity: 0;
+}
+.burger-btn.active .burger-line:nth-child(3) {
+  transform: rotate(45deg) translateY(-11px);
+}
+@media screen and (max-width: 1100px) {
+  .header-cont {
+    padding: 0px 50px;
+  }
+  .header-title h1 {
+    font-size: 25px;
+  }
+  .nav-links li a {
+    font-size: 18px;
+  }
+}
+@media screen and (max-width: 600px) {
+  section.page {
+    padding-top: 50px;
+  }
+  .header-cont {
+    padding: 0px 25px;
+  }
+  .burger-btn {
+    display: flex;
+  }
+  .header-line {
+    display: none;
+  }
+  nav {
+    transform: translateX(100%);
+    position: fixed;
+    top: 50px;
+    right: 0;
+    width: 75%;
+    max-width: 300px;
+    padding: 40px 0;
+    transition: var(--transition-page);
+    border-radius: 0 0 0 10px;
+    box-shadow: 0 4px 4px #00000040;
+    z-index: -1;
+    background-color: #f9f9f9;
+  }
+  nav.active {
+    transform: translateX(0);
+  }
+  .nav-links {
+    flex-direction: column;
+    align-items: center;
+    gap: 0px;
+  }
+  .nav-links li {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 0;
+    transition: var(--transition-page);
+  }
+  .nav-links li:hover {
+    background-color: #d9e8f7;
+  }
+}
