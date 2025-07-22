@@ -1,1 +1,44 @@
-/* Gblobal styles */
+/* --- Global styles --- */
+:root {
+  --transition-page: all 0.3s ease-in-out;
+}
+/* --- Fonts --- */
+@font-face {
+  font-family: "Montserrat-Light";
+  src: url("/static/fonts/Montserrat/Montserrat-Regular.ttf");
+}
+@font-face {
+  font-family: "Montserrat";
+  src: url("/static/fonts/Montserrat/Montserrat-Regular.ttf");
+}
+@font-face {
+  font-family: "Montserrat-Medium";
+  src: url("/static/fonts/Montserrat/Montserrat-Medium.ttf");
+}
+@font-face {
+  font-family: "Montserrat-SemiBold";
+  src: url("/static/fonts/Montserrat/Montserrat-SemiBold.ttf");
+}
+@font-face {
+  font-family: "Montserrat-Bold";
+  src: url("/static/fonts/Montserrat/Montserrat-Bold.ttf");
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: "Montserrat", sans-serif;
+  background-color: #fefeff;
+  color: #476a8a;
+  line-height: 1.4;
+}
+a {
+  text-decoration: none;
+  color: #476a8a;
+}
+section.page {
+  min-height: 100vh;
+  padding-top: 60px;
+}
