@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 
+{% block title %}Home – CSVibe{% endblock %}
 
 {% block styles %}
 {{ super() }}
@@ -7,10 +8,33 @@
 {% endblock %}
 
 {% block content %}
-<h2>Welcome to CSVibe</h2>
-<p>Your one-stop solution for all your CSV needs.</p>
+<div class="upload-panel">
+    <div class="upload-info">
+        <div class="upload-info-text">
+            <h2>What is CSVibe?</h2>
+            <ul>
+                <li>Online CSV plotting tool</li>
+                <li>Interactive, drag and drop interface</li>
+                <li>Private, your data never leaves your device</li>
+            </ul>
+        </div>
+        <div class="upload-info-img">
+            <img src="{{ url_for('static', filename='assets/main-page-img.png') }}" alt="Graph illustration">
+        </div>
+    </div>
+    <div class="upload-form" id="drop-zone">
+        <div class="upload-form-btns">
+            <button type="button" id="test-btn">Try example</button>
+            <button type="button" id="choose-btn">Choose CSV file</button>
+        </div>
+        <input type="file" id="csv-file" accept=".csv" hidden>
+        <p>Or drag and drop a csv file to plot</p>
+        <div id="upload-error" class="error-message"></div>
+    </div>
+</div>
 {% endblock %}
 
 {% block scripts %}
 {{ super() }}
+<script src="{{ url_for('static', filename='js/index.js') }}"></script>
 {% endblock %}

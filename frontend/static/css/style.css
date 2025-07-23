@@ -41,6 +41,11 @@ a {
 section.page {
   min-height: 100vh;
   padding-top: 60px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
 }
 /* --- Header --- */
 header {
@@ -49,6 +54,7 @@ header {
   left: 0;
   width: 100%;
   background-color: #f9f9f9;
+  z-index: 1000;
 }
 .header-line {
   height: 10px;
