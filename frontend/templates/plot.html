@@ -6,11 +6,89 @@
 {% endblock %}
 
 {% block content %}
-<h2>Plotter CSVibe</h2>
-<p>CSVibe is your go-to platform for all things CSV. Whether you need to create, edit, or analyze CSV files, we've got
-    you covered.</p>
+<section class="page-plot">
+    <div class="page-plot-ct">
+        <div class="plot-panel">
+            <div class="plot-file-info">
+                <div class="panel-file-name" id="file-name">
+                    <h1>data.csv</h1>
+                </div>
+                <div class="panel-axis">
+                    <div class="axis-x">
+                        <div class="axis-hd">
+                            <p>X-axis</p>
+                        </div>
+                        <div class="axis-bd" id="axis-x-name">
+                            <p>index</p>
+                        </div>
+                    </div>
+                    <div class="axis-swap-btn">
+                        <svg viewBox="0 0 35 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M33.0253 11.8429H30.1313L29.3736 9.48561H25.0353L24.2855 11.8429H21.4073L25.693 0.0565211H28.8369L33.0253 11.8429ZM28.666 7.12838L27.4294 3.22149C27.333 2.92504 27.2663 2.57161 27.2295 2.16119H27.1637C27.1427 2.50673 27.0734 2.8488 26.9559 3.18724L25.6956 7.12838H28.666ZM2.62795 29.9961V18.2097H6.93737C8.25805 18.2097 9.27313 18.45 9.98261 18.9306C10.6921 19.4112 11.0468 20.0882 11.0468 20.9616C11.0468 21.5948 10.8311 22.1486 10.3996 22.623C9.96816 23.0975 9.41654 23.4277 8.74479 23.6135V23.6478C9.5972 23.7513 10.2781 24.0613 10.7877 24.5778C11.2971 25.0944 11.5519 25.7236 11.5519 26.4655C11.5519 27.5494 11.1626 28.4088 10.3838 29.0437C9.6051 29.6787 8.54132 29.9961 7.19254 29.9961H2.62795ZM5.32197 20.2303V22.9243H6.46112C6.99609 22.9243 7.417 22.7963 7.72395 22.5401C8.0309 22.2841 8.18441 21.9315 8.18441 21.4825C8.18441 20.6477 7.55386 20.2303 6.29277 20.2303H5.32197ZM5.32197 24.9448V27.9756H6.74526C7.35213 27.9756 7.8279 27.8366 8.17257 27.5586C8.51717 27.2806 8.68954 26.9013 8.68954 26.4207C8.68954 25.9612 8.52025 25.6004 8.18173 25.3381C7.84321 25.0759 7.36965 24.9448 6.76104 24.9448H5.32197ZM13.3275 0.584779C16.3484 -0.281444 19.4188 -0.156188 22.1909 0.767811L19.9608 3.42552C18.113 3.02473 16.1424 3.0619 14.1976 3.6196C10.1439 4.78196 7.19285 7.92199 6.09206 11.6914L11.9271 10.0182L9.76248 13.9232L2.17554 16.0987L0 8.51173L2.16457 4.60674L3.54311 9.41434C5.2095 5.2706 8.70162 1.91123 13.3275 0.584779ZM21.5944 29.4152C18.5734 30.2815 15.503 30.1562 12.7309 29.2321L14.961 26.5745C16.8088 26.9753 18.7795 26.9381 20.7243 26.3804C24.778 25.218 27.7289 22.078 28.8298 18.3086L22.9948 19.9818L25.1594 16.0768L32.7463 13.9013L34.9219 21.4883L32.7573 25.3933L31.3788 20.5856C29.7124 24.7294 26.2203 28.0888 21.5944 29.4152Z"
+                                fill="currentColor" />
+                        </svg>
+                    </div>
+                    <div class="axis-y">
+                        <div class="axis-hd">
+                            <p>Y-axis</p>
+                        </div>
+                        <div class="axis-bd" id="axis-y-name">
+                            <p>result</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-<div id="tester" style="width:600px;height:250px;"></div>
+
+            <div class="panel-graph-stats" id="graph-stats">
+                <div class="stats-item-ct stats-mean" id="graph-mean">
+                    <div class="stats-hd">
+                        <p>Mean</p>
+                    </div>
+                    <div class="stats-bd">
+                        <p id="graph-mean-value">0.00</p>
+                    </div>
+                </div>
+                <div class="stats-item-ct stats-median" id="graph-median">
+                    <div class="stats-hd">
+                        <p>Median</p>
+                    </div>
+                    <div class="stats-bd">
+                        <p id="graph-median-value">0.00</p>
+                    </div>
+                </div>
+                <div class="stats-item-ct stats-max" id="graph-max">
+                    <div class="stats-hd">
+                        <p>Max</p>
+                    </div>
+                    <div class="stats-bd">
+                        <p id="graph-max-value">0.00</p>
+                    </div>
+                </div>
+                <div class="stats-item-ct stats-min" id="graph-min">
+                    <div class="stats-hd">
+                        <p>Min</p>
+                    </div>
+                    <div class="stats-bd">
+                        <p id="graph-min-value">0.00</p>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-graph-btns">
+                <button type="button" id="plot-btn">
+                    <p>Download picture</p>
+                </button>
+                <button type="button" id="reset-btn">
+                    <p>Load new file</p>
+                </button>
+            </div>
+        </div>
+        <div class="plot-ct">
+            <div class="plot-graph" id="plot"></div>
+        </div>
+</section>
+
 {% endblock %}
 
 {% block scripts %}
@@ -21,4 +99,5 @@
 </script>
 <script src="https://cdn.plot.ly/plotly-3.0.1.min.js" charset="utf-8" onerror="loadLocalPlotly()"></script>
 {{ super() }}
+<script src="{{ url_for('static', filename='js/plot.js') }}" defer></script>
 {% endblock %}

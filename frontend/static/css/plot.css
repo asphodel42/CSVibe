@@ -1,0 +1,238 @@
+/* --- Plot page layout --- */
+.page-plot {
+  width: 100%;
+  display: flex;
+  height: calc(100vh - 60px);
+}
+.page-plot-ct {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 40px 50px;
+}
+/* --- Plot panel --- */
+.plot-panel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-basis: 315px;
+  gap: 50px;
+}
+.plot-file-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  width: 100%;
+}
+.panel-file-name {
+  padding: 8px 0;
+  background-color: #7e9fbe;
+  border-radius: 12px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.panel-file-name h1 {
+  font-size: 24px;
+  color: #fefefe;
+}
+.panel-axis {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+}
+.axis-x,
+.axis-y {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 7px 20px;
+  background-color: #98b2cb;
+  color: #fefefe;
+  border-radius: 8px;
+}
+.axis-bd {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #7e9fbe;
+  padding: 9px 22px;
+  border-radius: 6px;
+}
+.axis-hd p,
+.axis-bd p,
+.stats-hd p,
+.stats-bd p {
+  font-size: 22px;
+}
+.axis-swap-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 30px;
+  cursor: pointer;
+  color: #476a8a;
+}
+.axis-swap-btn svg {
+  height: 100%;
+}
+.panel-graph-stats {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+.stats-item-ct {
+  display: flex;
+  flex-direction: column;
+  flex: 1 0 calc(100% / 2 - 10px);
+  align-items: center;
+  justify-content: center;
+}
+.stats-hd,
+.stats-bd {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  font-family: "Montserrat-Medium";
+  font-size: 22px;
+}
+.stats-hd {
+  background-color: #98b2cb;
+  color: #fefefe;
+  border-radius: 8px 8px 0 0;
+  padding: 7px 0;
+}
+.stats-bd {
+  background-color: #dfedfb;
+  padding: 9px;
+  border-radius: 0 0 8px 8px;
+}
+.panel-graph-btns {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+  gap: 12px;
+}
+.panel-graph-btns button {
+  border: none;
+  background-color: #476a8a;
+  color: #fefefe;
+  width: 100%;
+  padding: 13px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: var(--transition-page);
+}
+.panel-graph-btns button p {
+  font-size: 20px;
+  font-family: "Montserrat-Medium";
+}
+.panel-graph-btns button:hover {
+  background: #293d50;
+}
+/* --- Plot canvas --- */
+.plot-ct {
+  flex: 1;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 15px;
+  border-radius: 12px;
+  background-color: #7e9fbe;
+}
+.plot-graph {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+@media screen and (max-width: 1200px) {
+  .panel-file-name h1 {
+    font-size: 22px;
+    color: #fefefe;
+  }
+  .axis-hd p,
+  .axis-bd p,
+  .stats-hd p,
+  .stats-bd p {
+    font-size: 20px;
+  }
+  .panel-graph-btns button p {
+    font-size: 18px;
+  }
+  .plot-panel {
+    flex-basis: 250px;
+  }
+  .page-plot-ct {
+    padding: 30px;
+  }
+}
+@media screen and (max-width: 1000px) {
+  .stats-hd p,
+  .stats-bd p {
+    font-size: 18px;
+  }
+  .axis-x,
+  .axis-y {
+    padding: 7px 10px;
+  }
+  .stats-hd {
+    padding: 5px 0;
+  }
+  .stats-bd {
+    padding: 7px;
+  }
+  .plot-panel {
+    gap: 30px;
+  }
+}
+@media screen and (max-width: 800px) {
+  .page-plot {
+    height: calc(100vh - 50px);
+  }
+  .page-plot-ct {
+    flex-direction: column;
+    align-items: center;
+  }
+  .plot-panel {
+    max-width: 300px;
+  }
+  .plot-ct {
+    aspect-ratio: 6 / 5;
+    width: 100%;
+  }
+  .panel-file-name h1 {
+    font-size: 20px;
+    color: #fefefe;
+  }
+  .axis-hd p,
+  .axis-bd p {
+    font-size: 18px;
+  }
+  .stats-hd p,
+  .stats-bd p {
+    font-size: 16px;
+  }
+}
+@media screen and (max-width: 600px) {
+  .axis-bd {
+    padding: 5px 15px;
+  }
+  .plot-panel {
+    gap: 20px;
+  }
+}
