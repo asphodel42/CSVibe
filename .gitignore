@@ -7,3 +7,4 @@ backend/tmp/
 backend/test_data/
 
 .vscode/
+test_data/
