@@ -9,7 +9,7 @@ CSVibe is a lightweight web application for quickly visualizing CSV data. Upload
 1. **Clone the repository**
 
    ```bash
-   git clone https://github.com/yourusername/CSVibe.git
+   git clone https://github.com/asphodel42/CSVibe.git
    cd CSVibe
    ```
 
