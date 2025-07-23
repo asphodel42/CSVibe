@@ -20,13 +20,13 @@ fileInput.addEventListener("change", () => {
 });
 
 ["dragenter", "dragover"].forEach((ev) =>
-  dropZone.addEventListener(ev, (e) => {
+  document.addEventListener(ev, (e) => {
     e.preventDefault();
     dropZone.classList.add("hover");
   })
 );
 ["dragleave", "drop"].forEach((ev) =>
-  dropZone.addEventListener(ev, (e) => {
+  document.addEventListener(ev, (e) => {
     e.preventDefault();
     dropZone.classList.remove("hover");
     if (ev === "drop" && e.dataTransfer.files.length) {

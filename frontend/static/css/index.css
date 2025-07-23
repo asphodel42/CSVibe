@@ -52,6 +52,11 @@
   justify-content: center;
   padding: 35px;
   gap: 14px;
+  transition: var(--transition-page);
+}
+.upload-form.hover {
+  border: 3px solid #196ebd;
+  background-color: #bec3d5;
 }
 .upload-form-btns {
   display: flex;
