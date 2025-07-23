@@ -1,5 +1,40 @@
+const downloadPlotBtn = document.getElementById("download-plot");
+const loadPlotBtn = document.getElementById("load-plot");
+const axisSwapBtn = document.querySelector(".axis-swap-btn");
+const axisNameX = document.querySelector("#axis-x-name p");
+const axisNameY = document.querySelector("#axis-y-name p");
+
+let currentPlotData = null;
+let flipped = false;
+
+function downloadPlotHandler(data) {
+  downloadPlotBtn.addEventListener("click", () => {
+    if (!data) return;
+    Plotly.downloadImage("plot", {
+      format: "png",
+      filename: data.filename.replace(".csv", ""),
+    });
+  });
+}
+
+function changeAxisHandler(data) {
+  axisSwapBtn.addEventListener("click", () => {
+    flipped = !flipped;
+    const x = flipped ? data.data.result : data.data.index;
+    const y = flipped ? data.data.index : data.data.result;
+    axisNameX.textContent = flipped ? "result" : "index";
+    axisNameY.textContent = flipped ? "index" : "result";
+    Plotly.react("plot", [{ x, y, mode: "lines+markers", type: "scattergl" }], {
+      xaxis: { title: flipped ? "result" : "index" },
+      yaxis: { title: flipped ? "index" : "result" },
+    });
+  });
+}
+
 function renderChart(data) {
-  document.getElementById("file-name").children[0].textContent = data.filename;
+  currentPlotData = data;
+
+  document.querySelector("#file-name h1").textContent = data.filename;
 
   document.getElementById("graph-mean-value").textContent =
     data.stats.mean.toFixed(2);
@@ -25,6 +60,8 @@ function renderChart(data) {
   };
 
   Plotly.newPlot("plot", [trace], layout, { responsive: true });
+  downloadPlotHandler(data);
+  changeAxisHandler(data);
 }
 
 window.addEventListener("DOMContentLoaded", () => {

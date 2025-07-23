@@ -24,7 +24,6 @@ def process_csv(task_id, filename, upload_folder):
         index_all = []
         result_all = []
 
-        # Читаємо CSV чанками
         for chunk in pd.read_csv(path, chunksize=chunksize):
             if not {'index', 'result'}.issubset(chunk.columns):
                 TASKS[task_id] = {
