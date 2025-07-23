@@ -64,11 +64,15 @@ function renderChart(data) {
   changeAxisHandler(data);
 }
 
+loadPlotBtn.addEventListener("click", () => {
+  window.location.href = "/";
+});
+
 window.addEventListener("DOMContentLoaded", () => {
   const params = new URLSearchParams(window.location.search);
   const taskId = params.get("task");
   if (!taskId) {
-    alert("No task specified");
+    showToast("No task ID provided", "error");
     return;
   }
   fetch(`/result/${taskId}`)
@@ -77,5 +81,8 @@ window.addEventListener("DOMContentLoaded", () => {
       return r.json();
     })
     .then(renderChart)
-    .catch((err) => alert(err.message));
+    .catch((err) => {
+      console.error("Error fetching result:", err);
+      showToast("Error fetching result", "error");
+    });
 });

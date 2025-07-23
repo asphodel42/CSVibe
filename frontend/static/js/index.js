@@ -2,7 +2,6 @@ const testBtn = document.getElementById("test-btn");
 const chooseBtn = document.getElementById("choose-btn");
 const fileInput = document.getElementById("csv-file");
 const dropZone = document.getElementById("drop-zone");
-const errField = document.getElementById("upload-error");
 const modal = document.getElementById("loader-modal");
 const loaderText = document.getElementById("loader-text");
 
@@ -17,7 +16,7 @@ function hideLoader() {
 
 // --- Test button click (stub) ---
 testBtn.addEventListener("click", () => {
-  alert("Load example clicked");
+  showToast("Example data button will be implemented soon", "info");
 });
 
 // --- Choose file button triggers file input click ---
@@ -48,10 +47,8 @@ fileInput.addEventListener("change", () => {
 
 // --- Main file upload and SSE progress handler ---
 function handleFile(file) {
-  errField.textContent = "";
-
   if (!/\.csv$/i.test(file.name)) {
-    errField.textContent = "Please upload a .csv file";
+    showToast("Please upload a .csv file", "error");
     return;
   }
 
@@ -65,11 +62,15 @@ function handleFile(file) {
     body: formData,
   })
     .then((response) => {
-      if (!response.ok) throw new Error("Upload failed");
+      if (!response.ok) {
+        throw new Error("Upload failed with status " + response.status);
+      }
       return response.json();
     })
     .then((data) => {
-      if (!data.success) throw new Error(data.message || "Upload failed");
+      if (!data.success) {
+        throw new Error(data.message || "Upload failed");
+      }
 
       showLoader("Waiting for processing…");
 
@@ -105,7 +106,10 @@ function handleFile(file) {
           case "error":
             es.close();
             hideLoader();
-            alert(eventData.error || "An error occurred during processing");
+            showToast(
+              eventData.error || "An error occurred during processing",
+              "error"
+            );
             break;
           default:
             loaderText.textContent = `Status: ${status}`;
@@ -116,12 +120,12 @@ function handleFile(file) {
       es.onerror = () => {
         es.close();
         hideLoader();
-        alert("Error: Lost connection to server");
+        showToast("Lost connection to server", "error");
       };
     })
     .catch((error) => {
       hideLoader();
-      errField.textContent = "Error uploading file";
+      showToast("Error uploading file: " + error.message, "error");
       console.error("Error uploading file:", error);
     });
 }

@@ -2,6 +2,7 @@
 :root {
   --transition-page: all 0.3s ease-in-out;
 }
+
 /* --- Fonts --- */
 @font-face {
   font-family: "Montserrat-Light";
@@ -47,6 +48,7 @@ section.page {
   align-items: center;
   justify-content: center;
 }
+
 /* --- Header --- */
 header {
   position: fixed;
@@ -167,6 +169,7 @@ header {
     background-color: #d9e8f7;
   }
 }
+
 /* --- Modal loader --- */
 .modal {
   position: absolute;
@@ -208,4 +211,40 @@ header {
 #loader-text {
   font-size: 1.1rem;
   color: #333;
+}
+
+/* --- Toast notifications --- */
+#toast-container {
+  position: fixed;
+  top: 30px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 3000;
+}
+.toast {
+  min-width: 240px;
+  max-width: 320px;
+  padding: 0.75rem 1rem;
+  border-radius: 4px;
+  color: #fff;
+  font-family: "Montserrat-Medium";
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  opacity: 0;
+  transform: translateX(100%);
+  transition: var(--transition-page);
+}
+.toast.show {
+  opacity: 1;
+  transform: translateX(0);
+}
+.toast.error {
+  background-color: #e53e3e;
+}
+.toast.success {
+  background-color: #38a169;
+}
+.toast.info {
+  background-color: #3182ce;
 }

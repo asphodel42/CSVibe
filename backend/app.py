@@ -70,7 +70,7 @@ def stream(task_id):
                 prev_status = status
             if status in ("done", "error", "not_found"):
                 break
-            time.sleep(0.5)
+            time.sleep(1)
     return Response(event_stream(), mimetype="text/event-stream")
 
 
