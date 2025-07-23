@@ -41,6 +41,10 @@ a {
 section.page {
   min-height: 100vh;
   padding-top: 60px;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
 }
 /* --- Header --- */
 header {
