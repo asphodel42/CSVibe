@@ -1,3 +1,4 @@
+// --- Data preset ---
 const dataPreset = {
   filename: "example.csv",
   stats: {
@@ -28,12 +29,13 @@ function hideLoader() {
   modal.classList.add("hidden");
 }
 
+// --- Test button click handler ---
 testBtn.addEventListener("click", () => {
   sessionStorage.setItem("csvExample", JSON.stringify(dataPreset));
   window.location.href = "/plot?example=1";
 });
 
-// --- Choose file button triggers file input click ---
+// --- Choose button click handler ---
 chooseBtn.addEventListener("click", () => fileInput.click());
 
 // --- File input change handler ---
@@ -42,7 +44,7 @@ fileInput.addEventListener("change", () => {
   handleFile(fileInput.files[0]);
 });
 
-// --- Drag n drop hover effect and file handling ---
+// --- Drag n Drop handlers ---
 ["dragenter", "dragover"].forEach((evt) =>
   document.addEventListener(evt, (e) => {
     e.preventDefault();

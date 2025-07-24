@@ -14,21 +14,25 @@ UPLOAD_FOLDER = 'backend/tmp'
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
 
+# Render the main landing page
 @app.route('/')
 def index():
     return render_template('index.html')
 
 
+# Render the "About" information page
 @app.route('/about')
 def about():
     return render_template('about.html')
 
 
+# Render the page where the chart will be displayed
 @app.route('/plot')
 def plot():
     return render_template('plot.html')
 
 
+# Handle CSV file upload, start background processing, and return a task ID
 @app.route('/upload', methods=['POST'])
 def upload():
     if 'file' not in request.files:
@@ -54,6 +58,7 @@ def upload():
     return jsonify(success=True, task_id=task_id)
 
 
+# Stream server-sent events for task status updates to the client
 @app.route('/stream/<task_id>')
 def stream(task_id):
     def event_stream():
@@ -74,6 +79,7 @@ def stream(task_id):
     return Response(event_stream(), mimetype="text/event-stream")
 
 
+# Return the final JSON result for a completed task or an error/status
 @app.route('/result/<task_id>')
 def result(task_id):
     result_path = os.path.join(UPLOAD_FOLDER, f"{task_id}_result.json")
@@ -86,5 +92,6 @@ def result(task_id):
     return jsonify(success=False, error="Result not found"), 404
 
 
+# Run the Flask development server
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=5000)

@@ -1,11 +1,13 @@
 const BurgerBtn = document.querySelector(".burger-btn");
 const Nav = document.querySelector("nav");
 
+// --- Burger button click handler ---
 BurgerBtn.addEventListener("click", () => {
   BurgerBtn.classList.toggle("active");
   Nav.classList.toggle("active");
 });
 
+// --- Toast notifications ---
 function showToast(message, type = "error", duration = 3000) {
   const container = document.getElementById("toast-container");
   const toast = document.createElement("div");

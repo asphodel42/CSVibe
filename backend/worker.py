@@ -7,6 +7,7 @@ import json
 TASKS = {}  # Dictionary to hold task statuses
 
 
+# Processes a CSV file in chunks to compute summary statistics and save the output JSON
 def process_csv(task_id, filename, upload_folder):
     try:
         TASKS[task_id] = {"status": "processing"}
@@ -72,6 +73,7 @@ def process_csv(task_id, filename, upload_folder):
         TASKS[task_id] = {"status": "error", "error": str(e)}
 
 
+# Starts a background thread to run CSV processing without blocking the main thread
 def start_worker(task_id, filename, upload_folder):
     thread = threading.Thread(target=process_csv, args=(
         task_id, filename, upload_folder))

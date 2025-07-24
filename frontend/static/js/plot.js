@@ -18,7 +18,7 @@ function hideLoader() {
   modal.classList.add("hidden");
 }
 
-// ——— Download handler ———
+// ——— Download button handler ———
 function downloadPlotHandler() {
   downloadPlotBtn.addEventListener("click", () => {
     if (!currentPlotData) return;
@@ -29,7 +29,7 @@ function downloadPlotHandler() {
   });
 }
 
-// ——— Axis-swap handler ———
+// ——— Axis-swap button handler ———
 function changeAxisHandler() {
   axisSwapBtn.addEventListener("click", () => {
     if (!currentPlotData) return;
@@ -114,7 +114,7 @@ function renderChart(data) {
   changeAxisHandler();
 }
 
-// ——— “Load new file” button ———
+// ——— “Load new file” button handler ———
 loadPlotBtn.addEventListener("click", () => {
   window.location.href = "/";
 });
@@ -133,7 +133,6 @@ window.addEventListener("DOMContentLoaded", () => {
     showLoader("Rendering example…");
     renderChart(data);
     const plotDiv = document.getElementById("plot");
-    // чекати plotly_afterplot, потім hideLoader()
     plotDiv.on("plotly_afterplot", () => hideLoader());
     return;
   }
