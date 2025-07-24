@@ -6,6 +6,15 @@ For now, it only wokrs for one file per time, but it would be upgraded in future
 
 ---
 
+## Preview
+
+<img width="1866" height="921" alt="зображення" src="https://github.com/user-attachments/assets/10a9917c-b0b4-4b89-9c9d-20623c9e4785" />
+<img width="427" height="919" alt="зображення" src="https://github.com/user-attachments/assets/71c9aacf-815b-4fee-a958-3f2058c99d91" />
+<img width="1857" height="916" alt="зображення" src="https://github.com/user-attachments/assets/0d1efa7c-92c4-4c75-bd4f-741b4036ff55" />
+
+
+---
+
 ## Installation & Run Instructions
 
 1. **Clone the repository**
