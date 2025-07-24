@@ -2,6 +2,8 @@
 
 CSVibe is a lightweight web application for quickly visualizing CSV data. Upload your CSV file and watch as it’s processed asynchronously—complete with real-time status updates—then explore interactive charts and key statistics (mean, median, min, max) rendered with Plotly.js.
 
+For now, it only wokrs for one file per time, but it would be upgraded in future.
+
 ---
 
 ## Installation & Run Instructions
