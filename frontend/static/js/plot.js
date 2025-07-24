@@ -3,37 +3,70 @@ const loadPlotBtn = document.getElementById("load-plot");
 const axisSwapBtn = document.querySelector(".axis-swap-btn");
 const axisNameX = document.querySelector("#axis-x-name p");
 const axisNameY = document.querySelector("#axis-y-name p");
+const modal = document.getElementById("loader-modal");
+const loaderText = document.getElementById("loader-text");
 
 let currentPlotData = null;
 let flipped = false;
 
-function downloadPlotHandler(data) {
+// ——— Loader helpers  ———
+function showLoader(msg = "Rendering chart…") {
+  loaderText.textContent = msg;
+  modal.classList.remove("hidden");
+}
+function hideLoader() {
+  modal.classList.add("hidden");
+}
+
+// ——— Download handler ———
+function downloadPlotHandler() {
   downloadPlotBtn.addEventListener("click", () => {
-    if (!data) return;
+    if (!currentPlotData) return;
     Plotly.downloadImage("plot", {
       format: "png",
-      filename: data.filename.replace(".csv", ""),
+      filename: currentPlotData.filename.replace(".csv", ""),
     });
   });
 }
 
-function changeAxisHandler(data) {
+// ——— Axis-swap handler ———
+function changeAxisHandler() {
   axisSwapBtn.addEventListener("click", () => {
+    if (!currentPlotData) return;
     flipped = !flipped;
-    const x = flipped ? data.data.result : data.data.index;
-    const y = flipped ? data.data.index : data.data.result;
+    const x = flipped
+      ? currentPlotData.data.result
+      : currentPlotData.data.index;
+    const y = flipped
+      ? currentPlotData.data.index
+      : currentPlotData.data.result;
+
     axisNameX.textContent = flipped ? "result" : "index";
     axisNameY.textContent = flipped ? "index" : "result";
-    Plotly.react("plot", [{ x, y, mode: "lines+markers", type: "scattergl" }], {
-      xaxis: { title: flipped ? "result" : "index" },
-      yaxis: { title: flipped ? "index" : "result" },
-    });
+
+    Plotly.react(
+      "plot",
+      [
+        {
+          x,
+          y,
+          mode: "lines+markers",
+          type: "scattergl",
+          marker: { color: "#476a8a" },
+        },
+      ],
+      {
+        xaxis: { title: { text: flipped ? "result" : "index" } },
+        yaxis: { title: { text: flipped ? "index" : "result" } },
+      },
+      { responsive: true }
+    );
   });
 }
 
+// ——— Render the chart and stats ———
 function renderChart(data) {
   currentPlotData = data;
-
   document.querySelector("#file-name h1").textContent = data.filename;
 
   document.getElementById("graph-mean-value").textContent =
@@ -45,44 +78,76 @@ function renderChart(data) {
   document.getElementById("graph-max-value").textContent =
     data.stats.max.toFixed(2);
 
+  const MAX_POINTS = 50000;
+  const xs = data.data.index;
+  const ys = data.data.result;
+  let xPlot = xs,
+    yPlot = ys;
+
+  if (xs.length > MAX_POINTS) {
+    const step = Math.ceil(xs.length / MAX_POINTS);
+    xPlot = [];
+    yPlot = [];
+    for (let i = 0; i < xs.length; i += step) {
+      xPlot.push(xs[i]);
+      yPlot.push(ys[i]);
+    }
+  }
+
   const trace = {
     type: "scattergl",
     mode: "lines+markers",
-    x: data.data.index,
-    y: data.data.result,
-    marker: { color: "#476a8a" },
+    x: xPlot,
+    y: yPlot,
+    marker: { color: "#476a8a", size: 3, opacity: 0.6 },
+    line: { width: 1 },
   };
 
   const layout = {
-    title: `Plot for ${data.filename}`,
-    xaxis: { title: "index" },
-    yaxis: { title: "result" },
+    xaxis: { title: { text: "index" } },
+    yaxis: { title: { text: "result" } },
   };
 
   Plotly.newPlot("plot", [trace], layout, { responsive: true });
-  downloadPlotHandler(data);
-  changeAxisHandler(data);
+
+  downloadPlotHandler();
+  changeAxisHandler();
 }
 
+// ——— “Load new file” button ———
 loadPlotBtn.addEventListener("click", () => {
   window.location.href = "/";
 });
 
 window.addEventListener("DOMContentLoaded", () => {
+  showLoader("Rendering chart…");
+
   const params = new URLSearchParams(window.location.search);
   const taskId = params.get("task");
   if (!taskId) {
     showToast("No task ID provided", "error");
+    hideLoader();
     return;
   }
+
   fetch(`/result/${taskId}`)
-    .then((r) => {
-      if (!r.ok) throw new Error("Failed to fetch result");
-      return r.json();
+    .then((res) => {
+      if (!res.ok) throw new Error("Failed to fetch result");
+      return res.json();
     })
-    .then(renderChart)
+    .then((data) => {
+      renderChart(data);
+
+      const plotDiv = document.getElementById("plot");
+      const onAfter = () => {
+        hideLoader();
+        plotDiv.removeListener("plotly_afterplot", onAfter);
+      };
+      plotDiv.on("plotly_afterplot", onAfter);
+    })
     .catch((err) => {
+      hideLoader();
       console.error("Error fetching result:", err);
-      showToast("Error fetching result", "error");
+      showToast("Error fetching result: " + err.message, "error");
     });
 });
