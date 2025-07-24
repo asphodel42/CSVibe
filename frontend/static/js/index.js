@@ -1,3 +1,17 @@
+const dataPreset = {
+  filename: "example.csv",
+  stats: {
+    mean: 50.6,
+    median: 48.0,
+    min: 12.0,
+    max: 95.0,
+  },
+  data: {
+    index: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+    result: [12, 18, 29, 37, 44, 52, 63, 71, 85, 95],
+  },
+};
+
 const testBtn = document.getElementById("test-btn");
 const chooseBtn = document.getElementById("choose-btn");
 const fileInput = document.getElementById("csv-file");
@@ -14,9 +28,9 @@ function hideLoader() {
   modal.classList.add("hidden");
 }
 
-// --- Test button click (stub) ---
 testBtn.addEventListener("click", () => {
-  showToast("Example data button will be implemented soon", "info");
+  sessionStorage.setItem("csvExample", JSON.stringify(dataPreset));
+  window.location.href = "/plot?example=1";
 });
 
 // --- Choose file button triggers file input click ---
