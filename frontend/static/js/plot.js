@@ -120,9 +120,25 @@ loadPlotBtn.addEventListener("click", () => {
 });
 
 window.addEventListener("DOMContentLoaded", () => {
+  const params = new URLSearchParams(window.location.search);
+  const isExample = params.has("example");
+
+  if (isExample) {
+    const preset = sessionStorage.getItem("csvExample");
+    if (!preset) {
+      showToast("No example data found", "error");
+      return;
+    }
+    const data = JSON.parse(preset);
+    showLoader("Rendering example…");
+    renderChart(data);
+    const plotDiv = document.getElementById("plot");
+    // чекати plotly_afterplot, потім hideLoader()
+    plotDiv.on("plotly_afterplot", () => hideLoader());
+    return;
+  }
   showLoader("Rendering chart…");
 
-  const params = new URLSearchParams(window.location.search);
   const taskId = params.get("task");
   if (!taskId) {
     showToast("No task ID provided", "error");
