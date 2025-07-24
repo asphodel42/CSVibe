@@ -1,17 +1,62 @@
 {% extends 'base.html' %}
 
+{% block title %}About{% endblock %}
+
 {% block styles %}
 {{ super() }}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/about.css') }}">
 {% endblock %}
-{% block title %}About{% endblock %}
 
 {% block content %}
-<h2>About CSVibe</h2>
-<p>CSVibe is your go-to platform for all things CSV. Whether you need to create, edit, or analyze CSV files, we've got
-    you covered.</p>
-{% endblock %}
+<section class="page-about">
+    <div class="text-ct">
+        <h2>About CSVibe</h2>
 
-{% block scripts %}
-{{ super() }}
+        <p>
+            CSVibe is the easiest way to turn raw CSV data into beautiful, interactive charts—in seconds.
+            Simply upload your file (or drag &amp; drop), and asynchronous, multi-threaded backend
+            will crunch the numbers while you watch real-time status updates. When it’s done, explore
+            your data with a fully interactive Plotly.js scattergl chart and key summary statistics.
+        </p>
+    </div>
+    <div class="text-ct">
+        <h3>My Mission</h3>
+        <p>
+            I believe in making data visualization fast, private, and accessible to everyone.
+            Whether you’re a data scientist doing a quick sanity check or a business user
+            preparing a presentation, CSVibe gets you from raw numbers to clear insights
+            without installing heavy software.
+        </p>
+    </div>
+    <div class="text-ct">
+
+        <h3>Key Features</h3>
+        <ul>
+            <li>Asynchronous CSV processing with real-time progress feedback</li>
+            <li>Automatic calculation of mean, median, min &amp; max values</li>
+            <li>Interactive Plotly.js charts (scattergl) with built-in hover details</li>
+            <li>Drag &amp; drop or “Choose File” upload—no account or installation required</li>
+            <li>Download your chart as a PNG in one click</li>
+            <li>100% private—your data never leaves our server (or your device, if you self-host)</li>
+        </ul>
+    </div>
+
+    <div class="text-ct">
+        <h3>Future Roadmap</h3>
+        <p>
+            I’m working on adding support for multiple series, additional chart types,
+            and deeper statistical analyses (standard deviation, quartiles, custom
+            aggregation intervals). Stay tuned!
+        </p>
+    </div>
+    <div class="text-ct">
+        <h3>Contact &amp; Feedback</h3>
+        <p>
+            Have questions or feature requests? <br> Drop me a line at
+            <a href="mailto:mernov42@gmail.com">mernov42@gmail.com</a> or
+            open an issue on my
+            <a href="https://github.com/asphodel42/CSVibe" target="_blank">GitHub repo</a>.
+        </p>
+    </div>
+</section>
 {% endblock %}
