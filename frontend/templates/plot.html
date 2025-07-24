@@ -92,12 +92,12 @@
 {% endblock %}
 
 {% block scripts %}
+{{ super() }}
 <script>
     function loadLocalPlotly() {
         console.log("Loading local Plotly.js due to CDN failure.");
     }
 </script>
 <script src="https://cdn.plot.ly/plotly-3.0.1.min.js" charset="utf-8" onerror="loadLocalPlotly()"></script>
-{{ super() }}
 <script src="{{ url_for('static', filename='js/plot.js') }}" defer></script>
 {% endblock %}
