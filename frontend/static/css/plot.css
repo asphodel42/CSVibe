@@ -2,7 +2,7 @@
 .page-plot {
   width: 100%;
   display: flex;
-  height: calc(100vh - 60px);
+  min-height: calc(100vh - 60px);
 }
 .page-plot-ct {
   width: 100%;
@@ -28,16 +28,23 @@
   width: 100%;
 }
 .panel-file-name {
-  padding: 8px 0;
+  padding: 8px 12px;
   background-color: #7e9fbe;
   border-radius: 12px;
   width: 100%;
   display: flex;
   justify-content: center;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  max-width: 315px;
 }
 .panel-file-name h1 {
   font-size: 24px;
   color: #fefefe;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 .panel-axis {
   display: flex;
@@ -152,6 +159,7 @@
   padding: 15px;
   border-radius: 12px;
   background-color: #7e9fbe;
+  max-height: calc(100vh - 60px - 40px * 2);
 }
 .plot-graph {
   display: flex;
@@ -180,6 +188,12 @@
   .page-plot-ct {
     padding: 30px;
   }
+  .panel-file-name {
+    max-width: 250px;
+  }
+  .plot-ct {
+    max-height: calc(100vh - 60px - 30px * 2);
+  }
 }
 @media screen and (max-width: 1000px) {
   .stats-hd p,
@@ -202,7 +216,7 @@
 }
 @media screen and (max-width: 800px) {
   .page-plot {
-    height: calc(100vh - 50px);
+    min-height: calc(100vh - 50px);
   }
   .page-plot-ct {
     flex-direction: column;
@@ -214,6 +228,9 @@
   .plot-ct {
     aspect-ratio: 6 / 5;
     width: 100%;
+  }
+  .panel-file-name {
+    max-width: 300px;
   }
   .panel-file-name h1 {
     font-size: 20px;

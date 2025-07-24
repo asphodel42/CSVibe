@@ -1,11 +1,12 @@
 {% extends 'base.html' %}
 
-{% block title %}Home – CSVibe{% endblock %}
 
 {% block styles %}
 {{ super() }}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
 {% endblock %}
+
+{% block title %}Welcome to{% endblock %}
 
 {% block content %}
 <div class="upload-panel">
@@ -29,7 +30,6 @@
         </div>
         <input type="file" id="csv-file" accept=".csv" hidden>
         <p>Or drag and drop a csv file to plot</p>
-        <div id="upload-error" class="error-message"></div>
     </div>
 </div>
 {% endblock %}
