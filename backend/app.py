@@ -92,6 +92,6 @@ def result(task_id):
     return jsonify(success=False, error="Result not found"), 404
 
 
-# Run the Flask development server
+# The main entry point to run the Flask application
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=5000)
