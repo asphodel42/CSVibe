@@ -51,3 +51,7 @@ The backend is built with Flask and uses a simple threading model to process CSV
 On the frontend, vanilla JavaScript manages a two-panel upload interface—complete with drag-and-drop and a modal loader for status feedback. Once processing completes, the user is redirected to the plot page, where the app fetches the computed results JSON, populates a statistics block, and draws an interactive `scattergl` chart using Plotly.js. Non-blocking toast notifications handle errors and informative messages consistently across the application.
 
 Configuration, styling, and scripts are organized under `frontend/static` and `frontend/templates`, while core logic and dependencies live in `backend`. Simply follow the steps above to deploy locally and start visualizing CSV data in minutes.
+
+
+### Features roadmap
+<Working on>
