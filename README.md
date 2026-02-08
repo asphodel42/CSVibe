@@ -53,5 +53,3 @@ On the frontend, vanilla JavaScript manages a two-panel upload interface—compl
 Configuration, styling, and scripts are organized under `frontend/static` and `frontend/templates`, while core logic and dependencies live in `backend`. Simply follow the steps above to deploy locally and start visualizing CSV data in minutes.
 
 
-### Features roadmap
-<Working on>
